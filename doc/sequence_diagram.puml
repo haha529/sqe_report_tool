@@ -1,0 +1,21 @@
+@startuml
+actor User
+
+participant "Streamlit Frontend" as FE
+participant "FastAPI Backend" as BE
+participant "Screenshot Service" as SS
+participant "Email Service" as ES
+
+User -> FE: Enter URLs, Image Size, Email Template
+FE -> BE: POST /screenshot
+BE -> SS: Capture Screenshots
+SS -> BE: Return Screenshots
+BE -> FE: Return Screenshot URLs
+
+User -> FE: Request to Send Email
+FE -> BE: POST /send-email
+BE -> ES: Send Email with Screenshots
+ES -> BE: Return Email Status
+BE -> FE: Return Email Status
+
+@enduml

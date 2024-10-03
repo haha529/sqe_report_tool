@@ -1,0 +1,49 @@
+@startuml
+!define RECTANGLE class
+
+RECTANGLE StreamlitFrontend {
+  app.py
+}
+
+RECTANGLE FastAPIBackend {
+  routes.py
+  models.py
+  services/
+  utils/
+}
+
+RECTANGLE Services {
+  screenshot_service.py
+  email_service.py
+}
+
+RECTANGLE Utils {
+  image_utils.py
+}
+
+RECTANGLE Tests {
+  test_main.py
+  test_screenshot_service.py
+  test_email_service.py
+}
+
+RECTANGLE Templates {
+  email_template.html
+}
+
+RECTANGLE Docker {
+  backend/Dockerfile
+  frontend/Dockerfile
+  docker-compose.yml
+}
+
+StreamlitFrontend --> FastAPIBackend : HTTP Requests
+FastAPIBackend --> Services : Function Calls
+FastAPIBackend --> Utils : Function Calls
+FastAPIBackend --> Models : Data Models
+FastAPIBackend --> Templates : Email Templates
+Docker --> StreamlitFrontend : Container
+Docker --> FastAPIBackend : Container
+Tests --> FastAPIBackend : Test Cases
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+actor User
+
+rectangle "Streamlit Frontend" as FE {
+  [Enter URLs, Image Size, Email Template]
+  [Request to Send Email]
+}
+
+rectangle "FastAPI Backend" as BE {
+  [POST /screenshot]
+  [POST /send-email]
+}
+
+rectangle "Screenshot Service" as SS {
+  [Capture Screenshots]
+}
+
+rectangle "Email Service" as ES {
+  [Send Email with Screenshots]
+}
+
+User --> FE : Input Data
+FE --> BE : HTTP Requests
+BE --> SS : Capture Screenshots
+SS --> BE : Return Screenshots
+BE --> FE : Return Screenshot URLs
+FE --> BE : Send Email Request
+BE --> ES : Send Email
+ES --> BE : Return Email Status
+BE --> FE : Return Email Status
+
+@enduml

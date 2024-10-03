@@ -1,0 +1,38 @@
+@startuml
+entity "User" {
+  * user_id : int
+  --
+  username : string
+  email : string
+  password : string
+}
+
+entity "Screenshot" {
+  * screenshot_id : int
+  --
+  url : string
+  image_path : string
+  user_id : int
+}
+
+entity "Email" {
+  * email_id : int
+  --
+  recipient : string
+  subject : string
+  body : string
+  user_id : int
+}
+
+entity "EmailTemplate" {
+  * template_id : int
+  --
+  template_name : string
+  template_content : string
+  user_id : int
+}
+
+User ||--o{ Screenshot : "captures"
+User ||--o{ Email : "sends"
+User ||--o{ EmailTemplate : "creates"
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+actor User
+
+usecase "Enter URLs, Image Size, Email Template" as UC1
+usecase "Capture Screenshots" as UC2
+usecase "Return Screenshot URLs" as UC3
+usecase "Request to Send Email" as UC4
+usecase "Send Email with Screenshots" as UC5
+usecase "Return Email Status" as UC6
+
+User --> UC1
+User --> UC4
+UC1 --> UC2
+UC2 --> UC3
+UC4 --> UC5
+UC5 --> UC6
+
+@enduml
