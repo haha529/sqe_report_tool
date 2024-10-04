@@ -19,9 +19,9 @@ class TestConfig(unittest.TestCase):
             self.assertEqual(result, "\\path\\to\\dir\\app\\templates")
 
         if os.name == 'nt':
-            test_windows()
+            test_windows(self)
         else:
-            test_linux()
+            test_linux(self)
 
 if __name__ == '__main__':
     unittest.main()
