@@ -54,8 +54,8 @@ def screenshot(request: ScreenshotRequest):
 @router.post("/send-email")
 def email(request: EmailRequest):
     logging.info(f"Sending emails: {request.recipient}")
-    email_service = EmailService()
     try:
+        email_service = EmailService()
         result = email_service.send_email(request.template, request.recipient, request.images, request.custom_text)
         return {"message": "Emails sent", "results": result}
     except Exception as e:

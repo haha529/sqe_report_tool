@@ -3,6 +3,7 @@ from typing import List
 
 
 class ScreenshotParams(BaseModel):
+    id: int
     url: str
     width: int
     height: int

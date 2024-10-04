@@ -8,7 +8,7 @@ class EmailService:
         self.templates_dir = self.get_templates_dir()
 
     def get_templates_dir(self):
-        templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../templates')
+        templates_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates')
         logging.info(f"Templates directory: {templates_dir}")
         return templates_dir
 

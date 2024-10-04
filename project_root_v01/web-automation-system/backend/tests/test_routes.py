@@ -2,10 +2,9 @@ import unittest
 from unittest.mock import patch, mock_open, MagicMock
 from fastapi.testclient import TestClient
 
-from app.routes import router
-from app.models import ScreenshotRequest, EmailRequest, TemplateRequest
+from app.main import app
 
-client = TestClient(router)
+client = TestClient(app)
 
 class TestRoutes(unittest.TestCase):
 
