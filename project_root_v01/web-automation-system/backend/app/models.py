@@ -10,16 +10,11 @@ class ScreenshotParams(BaseModel):
 class ScreenshotRequest(BaseModel):
     screenshots: List[ScreenshotParams]
 
-
-class EmailParams(BaseModel):
+class EmailRequest(BaseModel):
     template: str
     recipient: str
     images: List[str]
     custom_text: str
-
-class EmailRequest(BaseModel):
-    email: List[EmailParams]
-
 
 class Email:
     def __init__(self, recipient, subject, body):
