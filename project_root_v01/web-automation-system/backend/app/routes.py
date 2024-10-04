@@ -1,16 +1,21 @@
 import os
+import logging
 
 from fastapi import APIRouter, HTTPException
+
+from app.config import get_templates_dir
 from app.models import ScreenshotRequest, EmailRequest, TemplateRequest
 from app.services.screenshot_service import ScreenshotService
 from app.services.email_service import EmailService
+from app.utils.logging_config import setup_logging
 
+setup_logging()
 router = APIRouter()
 
 @router.get("/templates")
 def get_templates():
     try:
-        templates = [f for f in os.listdir("templates") if f.endswith('.html')]
+        templates = [f for f in os.listdir(get_templates_dir()) if f.endswith('.html')]
         return {"templates": templates}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -18,7 +23,7 @@ def get_templates():
 @router.get("/template/{template_name}")
 def get_template(template_name: str):
     try:
-        with open(os.path.join(TEMPLATE_DIR, template_name), 'r') as file:
+        with open(os.path.join(get_templates_dir(), template_name), 'r') as file:
             content = file.read()
         return {"content": content}
     except Exception as e:
@@ -27,7 +32,7 @@ def get_template(template_name: str):
 @router.post("/template/{template_name}")
 def save_template(template_name: str, request: TemplateRequest):
     try:
-        with open(os.path.join(TEMPLATE_DIR, template_name), 'w') as file:
+        with open(os.path.join(get_templates_dir(), template_name), 'w') as file:
             file.write(request.content)
         return {"message": "Template saved successfully"}
     except Exception as e:
@@ -48,12 +53,10 @@ def screenshot(request: ScreenshotRequest):
 
 @router.post("/send-email")
 def email(request: EmailRequest):
-    email_service = EmailService()
+    logging.info(f"Sending emails: {request.recipient}")
     try:
-        results = []
-        for e in request.email:
-            result = email_service.send_email(e.template, e.recipient, e.images, e.custom_text)
-            results.append(result)
-        return {"message": "Emails sent", "results": results}
+        email_service = EmailService()
+        result = email_service.send_email(request.template, request.recipient, request.images, request.custom_text)
+        return {"message": "Emails sent", "results": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
