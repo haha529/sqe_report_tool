@@ -17,7 +17,7 @@ class ScreenshotService:
         self.screenshot_dir = config.get_screenshot_dir()
 
 
-    def capture_screenshot(self, id, url, width=0, height=0):
+    def capture_screenshot(self, name, url, width=0, height=0):
         logging.info(f"Taking screenshot of {url}")
 
         # Save screenshot to file
@@ -38,7 +38,7 @@ class ScreenshotService:
         with open(cropped_file_path, 'rb') as file:
             base64_string = base64.b64encode(file.read()).decode('utf-8')
         logging.info(f"Screenshot of {url} captured successfully")
-        return {"id": id, "url": url, "base64_image": base64_string}
+        return {"name": name, "url": url, "base64_image": base64_string}
 
 
     def get_screenshots(self):

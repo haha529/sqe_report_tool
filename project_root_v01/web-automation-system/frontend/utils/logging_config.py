@@ -3,7 +3,7 @@ import logging.config
 import os
 
 # Ensure the log directory exists
-log_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../log')
+log_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../log')
 os.makedirs(log_directory, exist_ok=True)
 
 LOGGING_CONFIG = {

@@ -1,0 +1,95 @@
+{
+    "general_information": {
+        "title": "Test Report1",
+        "heading": "Test Status Report",
+        "version": "1.0.0",
+        "week": "3rd",
+        "year": "2024",
+        "author": "John Doe",
+        "develop_branch": "dev",
+        "develop_product": "Product DEV",
+        "release_branch": "main",
+        "release_product": "Product MAIN",
+        "month": "10",
+        "day": "05",
+        "hour": "10",
+        "minute": "00",
+        "timezone": "KST",
+        "message": "This is a message from the Test Team."
+    },
+    "product_summaries": [
+        {
+            "name": "Product 1",
+            "main": true,
+            "url": "https://example.com/product1",
+            "screenshot": "True",
+            "top": "200",
+            "left": "0",
+            "width": "1500",
+            "height": "1000"
+        },
+        {
+            "name": "Product 1",
+            "main": false,
+            "url": "https://example.com/product1",
+            "screenshot": "True",
+            "top": "400",
+            "left": "0",
+            "width": "1500",
+            "height": "600"
+        }
+    ],
+    "group_summaries": [
+        {
+            "name": "Group A",
+            "url": "https://example.com/groupA",
+            "screenshot": "True",
+            "top": "100",
+            "left": "200",
+            "width": "400",
+            "height": "300"
+        }
+    ],
+    "details": [
+        {
+            "name": "Test Case 1",
+            "url": "https://example.com/test1",
+            "screenshot": "True",
+            "top": "100",
+            "left": "200",
+            "width": "400",
+            "height": "300",
+            "enable": "True"
+        },
+        {
+            "name": "Test Case 2",
+            "url": "https://example.com/test2",
+            "screenshot": "True",
+            "top": "100",
+            "left": "200",
+            "width": "400",
+            "height": "300",
+            "enable": "False"
+        },
+        {
+            "name": "Test Case 3",
+            "url": "https://example.com/test3",
+            "screenshot": "True",
+            "top": "100",
+            "left": "200",
+            "width": "400",
+            "height": "300",
+            "enable": "True"
+        },
+        {
+            "name": "Test Case 4",
+            "url": "https://example.com/test4",
+            "screenshot": "True",
+            "top": "100",
+            "left": "200",
+            "width": "400",
+            "height": "300",
+            "enable": "False"
+        }
+    ]
+}
