@@ -5,3 +5,4 @@ httpx
 jinja2
 selenium
 webdriver_manager
+pillow

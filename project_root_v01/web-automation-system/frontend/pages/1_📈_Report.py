@@ -14,7 +14,7 @@ st.sidebar.header("Report")
 response = requests.get("http://backend:8000/templates")
 templates = response.json().get("templates", [])
 
-selected_template = st.sidebar.radio("Select Template", templates, index=1)
+selected_template = st.sidebar.radio("Select Template", templates, index=0)
 selected_menu = st.sidebar.radio("Select Menu", ["Edit Template", "Edit Variables", "Capture Screenshots", "Render"], index=0)
 
 # tabs =  st.tabs(templates)

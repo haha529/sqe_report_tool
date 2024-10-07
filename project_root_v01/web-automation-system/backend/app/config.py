@@ -12,7 +12,7 @@ def get_data_dir():
 
 
 def get_templates_dir():
-    templates_dir = os.path.join(get_data_dir(), 'templates')
+    templates_dir = os.path.join(get_root_dir(), 'app', 'templates')
     logging.info(f"Templates directory: {templates_dir}")
     return templates_dir
 
