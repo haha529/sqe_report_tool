@@ -38,11 +38,19 @@ def save_template(template_name: str, request: TemplateRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
-@router.post("/screenshot")
-def screenshot(request: ScreenshotRequest):
-    screenshot_service = ScreenshotService()
+@router.get("/screenshots")
+def get_screenshots():
     try:
+        screenshot_service = ScreenshotService()
+        screenshots = screenshot_service.get_screenshots()
+        return {"message": "Screenshots retrieved", "results": screenshots}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/screenshots")
+def screenshot(request: ScreenshotRequest):
+    try:
+        screenshot_service = ScreenshotService()
         results = []
         for s in request.screenshots:
             result = screenshot_service.capture_screenshot(s.id, s.url, s.width, s.height)
@@ -52,7 +60,7 @@ def screenshot(request: ScreenshotRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/send-email")
-def email(request: EmailRequest):
+def send_email(request: EmailRequest):
     logging.info(f"Sending emails: {request.recipient}")
     try:
         email_service = EmailService()
