@@ -1,0 +1,49 @@
+@startuml
+interface TemplateProcessor {
+    +render_template(context: dict): str
+}
+
+class TemplateEngine {
+    -env: Environment
+    +__init__(template_dir: str)
+    +render(template_name: str, context: dict): str
+}
+
+class TemplateContextManager {
+    -context_file: str
+    +__init__(template_name: str, version: str)
+    +load_context(): dict
+    +save_context(context: dict): void
+    +delete_context(): void
+    +update_context_variable(key: str, value: any): void
+}
+
+TemplateProcessor <|-- ReportTemplateProcessor
+TemplateProcessor <|-- EmailTemplateProcessor
+
+class ReportTemplateProcessor {
+    -engine: TemplateEngine
+    -context_manager: TemplateContextManager
+    +__init__(engine: TemplateEngine, context_manager: TemplateContextManager)
+    +render_template(context: dict): str
+    +extract_group_variables(group_name: str): dict
+    +extract_urls_from_context(): (list, list)
+}
+
+class EmailTemplateProcessor {
+    -engine: TemplateEngine
+    +__init__(engine: TemplateEngine)
+    +render_template(context: dict): str
+}
+
+class TemplateFactory {
+    -engine: TemplateEngine
+    +__init__(engine: TemplateEngine)
+    +get_processor(template_name: str, version: str): TemplateProcessor
+}
+
+TemplateFactory --> TemplateProcessor
+TemplateFactory --> TemplateContextManager
+TemplateFactory --> TemplateEngine
+
+@enduml

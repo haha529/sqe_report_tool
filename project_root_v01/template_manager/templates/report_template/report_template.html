@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ general_information.title }}</title>
+</head>
+<body>
+  <h1>{{ general_information.heading }}</h1>
+    Hello<br>
+    We share the status of {{ general_information.version }} test results in {{ general_information.week }}th week of {{ general_information.year }} year.<br>
+    <br>
+  <h2>Test Environment Information</h2>
+    <ul>
+      <li>System Version: {{ general_information.version }}</li>
+    <br>
+  <h2>Message from Test Team</h2>
+    <p>{{ general_information.message }}</p>
+    <br>
+  <h2>Summary of Product</h2>
+  <ul>
+    {% for summary in product_summaries %}
+      <li>{{ summary.name }}: {{ summary.url }} {{ summary.top }} {{ summary.left }} {{ summary.width }} {{ summary.height }}</li>
+    {% endfor %}
+  </ul>
+  <h2>Detailed Test Results</h2>
+    <ul>
+      {% for detail in details %}
+        {% if detail.enable %}
+          <li>{{ detail.name }}: {{ detail.url }} {{ detail.top }} {{ detail.left }} {{ detail.width }} {{ detail.height }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+</body>
+</html>

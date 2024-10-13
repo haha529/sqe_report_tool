@@ -1,0 +1,53 @@
+@startuml
+
+class TemplateContextManager {
+  +__init__(template_dir, template_name, version)
+  +load_context()
+  +save_context(context)
+  +delete_context()
+  +update_context_variable(key, value)
+  +get_template_file()
+}
+
+class TemplateProcessor {
+  +__init__(engine: TemplateEngine, context_manager: TemplateContextManager)
+  +render_template(context)
+  +extract_group_variables(group_name)
+  +extract_urls_from_context()
+  +load_context()
+  +save_context(context)
+  +update_context_variable(key, value)
+}
+
+class EmailTemplateProcessor {
+  +__init__(engine: TemplateEngine, context_manager: TemplateContextManager)
+  +extract_group_variables(group_name)
+  +extract_urls_from_context()
+}
+
+class ReportTemplateProcessor {
+  +__init__(engine: TemplateEngine, context_manager: TemplateContextManager)
+  +extract_group_variables(group_name)
+  +extract_urls_from_context()
+}
+
+class TemplateEngine {
+  +__init__(template_dir)
+  +render(template_name, context)
+  +get_template_dir()
+}
+
+class TemplateFactory {
+  +__init__(engine: TemplateEngine)
+  +get_processor(template_name, version)
+}
+
+TemplateProcessor <|-- EmailTemplateProcessor
+TemplateProcessor <|-- ReportTemplateProcessor
+TemplateFactory --> TemplateEngine
+TemplateFactory --> TemplateContextManager
+TemplateFactory --> TemplateProcessor
+TemplateProcessor --> TemplateEngine
+TemplateProcessor --> TemplateContextManager
+
+@enduml

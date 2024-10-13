@@ -1,0 +1,12 @@
+{
+  "general_information": {
+    "title": "Report Title",
+    "author": "Author Name"
+  },
+  "summary": {
+    "urls": ["https://example.com/summary1", "https://example.com/summary2"]
+  },
+  "detail": {
+    "urls": ["https://example.com/detail1", "https://example.com/detail2"]
+  }
+}
