@@ -1,0 +1,29 @@
+@startuml
+
+!define FastAPIComponent interface
+
+class CSVFileHandler {
+    - file : UploadFile
+    + parse_csv() : pd.DataFrame
+}
+
+class VectorDBManager {
+    - client : chromadb.Client
+    + add_vectors(vectors, metadata) : void
+    + search_similar(query_vector, top_k=5) : list
+}
+
+class MLModelPredictor {
+    - model : pipeline
+    + predict(text_data) : list
+}
+
+FastAPIComponent FastAPI {
+    + upload_file(file: UploadFile) : JSONResponse
+}
+
+FastAPI --> CSVFileHandler : "parses CSV"
+FastAPI --> VectorDBManager : "vectorizes & searches similar data"
+FastAPI --> MLModelPredictor : "predicts results"
+
+@enduml
